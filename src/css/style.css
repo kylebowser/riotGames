@@ -1,0 +1,27 @@
+:root {
+  --font-body: "Arial", sans-serif;
+  --font-heading: "Helvetica", sans-serif;
+  --primary-color: white;
+  --secondary-color: blue;
+  --accent-color: red;
+  --background-color: black;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--secondary-color);
+}
