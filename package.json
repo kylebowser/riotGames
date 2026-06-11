@@ -30,6 +30,9 @@
     "vite": "^8.0.16"
   },
   "dependencies": {
-    "jest": "^30.4.2"
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jest": "^30.4.2",
+    "node-fetch": "^2.7.0"
   }
 }
