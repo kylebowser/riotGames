@@ -23,7 +23,7 @@ app.get("/api/player/:name/:tag", async (req, res) => {
   res.json(data);
 });
 
-app.get("*", (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 
