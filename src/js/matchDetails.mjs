@@ -22,17 +22,13 @@ export default class MatchDetails {
     const matchInfoContainer = document.querySelector(".match");
     console.log(this.matchData);
     matchInfoContainer.innerHTML = ``;
-    for (const entry of this.matchData) {
-      const matchEntry = document.createElement("div");
-      matchEntry.innerHTML = `
-        <h2>${this.matchData.queueType}</h2>
-        <p>Tier: ${this.matchData.tier}</p>
-        <p>Rank: ${this.matchData.rank}</p>
-        <p>League Points: ${this.matchData.leaguePoints}</p>
-        <p>Wins: ${this.matchData.wins}</p>
-        <p>Losses: ${this.matchData.losses}</p>
+    //for (const entry of this.matchData) {
+    const matchEntry = document.createElement("div");
+    matchEntry.innerHTML = `
+        <h2>${this.matchData.info.participants[0].summonerName}</h2>
+        <p>Tier: ${this.matchData.info.participants[0].championName}</p>
       `;
-      matchInfoContainer.appendChild(matchEntry);
-    }
+    matchInfoContainer.appendChild(matchEntry);
+    //}
   }
 }

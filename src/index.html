@@ -8,12 +8,33 @@
     <script src="/js/main.js" type="module" defer></script>
   </head>
   <body>
-    <header class="divider" id="main-header"></header>
+    <header
+      class="divider"
+      action="api/player/:name/NA1"
+      id="main-header"
+    ></header>
     <main id="main-content">
+      <form method="post" class="wf1">
+        <fieldset>
+          <label for="summoner-name"
+            >Summoner Name<input
+              type="text"
+              name="summoner-name"
+              id="summoner-name"
+              placeholder="Enter Summoner Name"
+              required
+          /></label>
+          <label for="submit"
+            ><input type="submit" id="submit" value="Search"
+          /></label>
+        </fieldset>
+      </form>
       <div class="player-info"></div>
       <p>
         WELCOME to the Riot Games Site! Explore our games, news, and community.
       </p>
+      <div class="rank"></div>
+      <div class="match"></div>
     </main>
     <footer id="main-footer"></footer>
   </body>
