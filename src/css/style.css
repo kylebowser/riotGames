@@ -96,3 +96,12 @@ footer {
 .loss {
   background-color: var(--accent-color);
 }
+
+.match {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 8px;
+}

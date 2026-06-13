@@ -3,6 +3,7 @@ var e=(e,t)=>()=>(e&&(t=e(e=0)),t),t=(e,t)=>()=>(t||(e((t={exports:{}}).exports,
       <p>Name: ${this.playerData.gameName}</p>
       <p>Tagline: ${this.playerData.tagLine}</p>
       <p>PUUID: ${this.playerData.puuid}</p>
+      <img class="profile-icon" alt="Profile Icon" />
     `}}})),u,d=e((()=>{s(),new o,u=class{constructor(e,t){this.dataSource=e,this.name=t}async init(){let e=(await this.dataSource.getId(this.name)).puuid;console.log(e);let t=await this.dataSource.getRank(e);this.rankData=t,this.renderRankDetails()}renderRankDetails(){let e=document.querySelector(`.rank`);console.log(this.rankData),e.innerHTML=``;for(let t of this.rankData){let n=document.createElement(`div`);n.innerHTML=`
         <h2>${t.queueType}</h2>
         <p>Tier: ${t.tier}</p>
@@ -11,7 +12,12 @@ var e=(e,t)=>()=>(e&&(t=e(e=0)),t),t=(e,t)=>()=>(t||(e((t={exports:{}}).exports,
         <p>Wins: ${t.wins}</p>
         <p>Losses: ${t.losses}</p>
         <p>Win Rate: ${(t.wins/(t.wins+t.losses)*100).toFixed(2)}%</p>
-      `,e.appendChild(n)}}}})),f,p=e((()=>{s(),new o,f=class{constructor(e,t){this.dataSource=e,this.name=t}async init(){let e=(await this.dataSource.getId(this.name)).puuid;console.log(e),console.log(`HEREERERER1`);let t=await this.dataSource.getMatchList(e);console.log(`HEREERERER2`),console.log(`Match list raw:`,t[0]);let n=t[0],r=await this.dataSource.getMatchDetails(n);console.log(`Match data raw:`,r),this.matchData=r,this.renderMatchDetails()}renderMatchDetails(){let e=document.querySelector(`.match`);console.log(this.matchData),e.innerHTML=``;let t=document.createElement(`div`);t.innerHTML=`
-        <h2>${this.matchData.info.participants[0].summonerName}</h2>
-        <p>Tier: ${this.matchData.info.participants[0].championName}</p>
-      `,e.appendChild(t)}}}));t((()=>{a(),l(),s(),d(),p(),i(),document.addEventListener(`DOMContentLoaded`,()=>{document.querySelector(`form`).addEventListener(`submit`,e=>{e.preventDefault();let t=document.querySelector(`#summoner-name`).value;console.log(`Form submitted with:`,t);let n=new o;new c(n,t).init(),new u(n,t).init(),new f(n,t).init()})})}))();
+      `,e.appendChild(n)}}}})),f,p=e((()=>{s(),new o,f=class{constructor(e,t){this.dataSource=e,this.name=t}async init(){this.matchInfoContainer=document.querySelector(`.match`),this.matchInfoContainer.innerHTML=``;let e=await this.dataSource.getId(this.name);this.puuid=e.puuid,console.log(this.puuid),console.log(`HEREERERER1`);let t=await this.dataSource.getMatchList(this.puuid);console.log(`HEREERERER2`),console.log(`Match list raw:`,t[0]);for(let e of t){let t=await this.dataSource.getMatchDetails(e);console.log(`Match data raw:`,t),this.matchData=t,this.renderMatchDetails()}}renderMatchDetails(){for(let e of this.matchData.info.participants)if(e.puuid===this.puuid){let t=`https://ddragon.leagueoflegends.com/cdn/16.12.1/img/profileicon/${e.profileIcon}.png`;document.querySelector(`.profile-icon`).src=t;let n=(e.kills+e.assists)/e.deaths,r=document.createElement(`div`);r.innerHTML=`
+        <h2>${e.riotIdGameName}</h2>
+        <p>Game Mode: ${this.matchData.info.gameMode}</p>
+        <p>Game Type: ${this.matchData.info.gameType}</p>
+        <p>Tier: ${e.championName}</p>
+        <img class="champ-img" alt="Champion Image" />
+        <p>${e.kills}/${e.deaths}/${e.assists}</p>
+        <p>KDA: ${n.toFixed(2)}</p>
+      `,e.win?r.classList.add(`win`):r.classList.add(`loss`);let i=`https://ddragon.leagueoflegends.com/cdn/16.12.1/img/champion/${e.championName}.png`;r.querySelector(`.champ-img`).src=i,this.matchInfoContainer.appendChild(r)}}}}));t((()=>{a(),l(),s(),d(),p(),i(),document.addEventListener(`DOMContentLoaded`,()=>{document.querySelector(`form`).addEventListener(`submit`,e=>{e.preventDefault();let t=document.querySelector(`#summoner-name`).value;console.log(`Form submitted with:`,t);let n=new o;new c(n,t).init(),new u(n,t).init(),new f(n,t).init()})})}))();
