@@ -20,6 +20,7 @@ export default class PlayerDetails {
       <p>Name: ${this.playerData.gameName}</p>
       <p>Tagline: ${this.playerData.tagLine}</p>
       <p>PUUID: ${this.playerData.puuid}</p>
+      <img class="profile-icon" alt="Profile Icon" />
     `;
   }
 }

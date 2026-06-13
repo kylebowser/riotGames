@@ -30,16 +30,30 @@ export default class MatchDetails {
     //const matchInfoContainer = document.querySelector(".match");
     for (const summoner of this.matchData.info.participants) {
       if (summoner.puuid === this.puuid) {
+        const iconUrl = `https://ddragon.leagueoflegends.com/cdn/16.12.1/img/profileicon/${summoner.profileIcon}.png`;
+        document.querySelector(".profile-icon").src = iconUrl;
+        const kda = (summoner.kills + summoner.assists) / summoner.deaths;
         const matchEntry = document.createElement("div");
         matchEntry.innerHTML = `
         <h2>${summoner.riotIdGameName}</h2>
+        <p>Game Mode: ${this.matchData.info.gameMode}</p>
+        <p>Game Type: ${this.matchData.info.gameType}</p>
         <p>Tier: ${summoner.championName}</p>
+        <img class="champ-img" alt="Champion Image" />
+        <p>${summoner.kills}/${summoner.deaths}/${summoner.assists}</p>
+        <p>KDA: ${kda.toFixed(2)}</p>
       `;
         if (summoner.win) {
           matchEntry.classList.add("win");
         } else {
           matchEntry.classList.add("loss");
         }
+        const champ = summoner.championName;
+        const patch = "16.12.1"; // or fetch dynamically
+
+        const imgUrl = `https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${champ}.png`;
+
+        matchEntry.querySelector(".champ-img").src = imgUrl;
         this.matchInfoContainer.appendChild(matchEntry);
       }
     }
