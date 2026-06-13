@@ -26,7 +26,7 @@ export default class ExternalServices {
 
   async getMatchList(puuid) {
     console.log("Fetching match list for PUUID:", puuid); // Debugging log
-    const res = await fetch(`/api/player/match/${puuid}`);
+    const res = await fetch(`/api/matchList/${puuid}`);
     return res.json();
   }
 

@@ -3,12 +3,13 @@ import ExternalServices from "./ExternalServices.mjs";
 const dataSource = new ExternalServices();
 
 export default class PlayerDetails {
-  constructor(dataSource) {
+  constructor(dataSource, name) {
     this.dataSource = dataSource;
+    this.name = name;
   }
 
   async init() {
-    const playerData = await this.dataSource.getId("LengthyShadow");
+    const playerData = await this.dataSource.getId(this.name);
     this.playerData = playerData;
     this.renderPlayerDetails();
   }

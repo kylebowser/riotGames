@@ -28,16 +28,17 @@ app.get("/api/player/rank/:puuid", async (req, res) => {
   res.json(data);
 });
 
-app.get("/api/player/match/:puuid", async (req, res) => {
+app.get("/api/matchList/:puuid", async (req, res) => {
   const { puuid } = req.params;
-  console.log("Received PUUID:", puuid); // Debugging log
-  const url = `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=2`;
+  console.log("THIS ONE:", puuid); // Debugging log
+  const url = `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20`;
 
   const response = await fetch(url, {
     headers: {
       "X-Riot-Token": process.env.RIOT_API_KEY,
     },
   });
+  console.log("HERERERHERHEHREHR3");
   const data = await response.json();
   res.json(data);
 });

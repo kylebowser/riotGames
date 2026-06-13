@@ -9,26 +9,39 @@ export default class MatchDetails {
   }
 
   async init() {
+    this.matchInfoContainer = document.querySelector(".match");
+    this.matchInfoContainer.innerHTML = ``;
     const getId = await this.dataSource.getId(this.name);
-    const puuid = getId.puuid;
-    console.log(puuid);
-    const matchList = await this.dataSource.getMatchList(puuid);
-    const matchId = matchList[0];
-    const matchData = await this.dataSource.getMatchDetails(matchId);
-    this.matchData = matchData;
-    this.renderMatchDetails();
+    this.puuid = getId.puuid;
+    console.log(this.puuid);
+    console.log("HEREERERER1");
+    const matchList = await this.dataSource.getMatchList(this.puuid);
+    console.log("HEREERERER2");
+    console.log("Match list raw:", matchList[0]);
+    //const matchId = matchList[0];
+    for (const matchId of matchList) {
+      const matchData = await this.dataSource.getMatchDetails(matchId);
+      console.log("Match data raw:", matchData);
+      this.matchData = matchData;
+      this.renderMatchDetails();
+    }
   }
   renderMatchDetails() {
-    const matchInfoContainer = document.querySelector(".match");
-    console.log(this.matchData);
-    matchInfoContainer.innerHTML = ``;
-    //for (const entry of this.matchData) {
-    const matchEntry = document.createElement("div");
-    matchEntry.innerHTML = `
-        <h2>${this.matchData.info.participants[0].summonerName}</h2>
-        <p>Tier: ${this.matchData.info.participants[0].championName}</p>
+    //const matchInfoContainer = document.querySelector(".match");
+    for (const summoner of this.matchData.info.participants) {
+      if (summoner.puuid === this.puuid) {
+        const matchEntry = document.createElement("div");
+        matchEntry.innerHTML = `
+        <h2>${summoner.riotIdGameName}</h2>
+        <p>Tier: ${summoner.championName}</p>
       `;
-    matchInfoContainer.appendChild(matchEntry);
-    //}
+        if (summoner.win) {
+          matchEntry.classList.add("win");
+        } else {
+          matchEntry.classList.add("loss");
+        }
+        this.matchInfoContainer.appendChild(matchEntry);
+      }
+    }
   }
 }
