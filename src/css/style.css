@@ -90,8 +90,8 @@ footer {
 }
 
 .profile-icon {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   margin-bottom: 1em;
 }
@@ -114,7 +114,18 @@ footer {
   border-radius: 8px;
 }
 
-.match .champ-img {
-  width: 30px;
-  height: 30px;
+.card {
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1em;
+  width: 800px;
+
+  display: flex;
+  align-items: center;
+}
+
+.card .champ-img {
+  width: 50px;
+  height: 50px;
 }

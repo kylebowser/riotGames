@@ -35,14 +35,13 @@ export default class MatchDetails {
         const kda = (summoner.kills + summoner.assists) / summoner.deaths;
         const matchEntry = document.createElement("div");
         matchEntry.innerHTML = `
-        <h2>${summoner.riotIdGameName}</h2>
+        <p>${summoner.riotIdGameName}</p>
         <p>Game Mode: ${this.matchData.info.gameMode}</p>
-        <p>Game Type: ${this.matchData.info.gameType}</p>
-        <p>Tier: ${summoner.championName}</p>
+        <p>Champion: ${summoner.championName}</p>
         <img class="champ-img" alt="Champion Image" />
-        <p>${summoner.kills}/${summoner.deaths}/${summoner.assists}</p>
-        <p>KDA: ${kda.toFixed(2)}</p>
+        <p>${summoner.kills}/${summoner.deaths}/${summoner.assists} KDA: ${kda.toFixed(2)}</p>
       `;
+        matchEntry.classList.add("card");
         if (summoner.win) {
           matchEntry.classList.add("win");
         } else {
